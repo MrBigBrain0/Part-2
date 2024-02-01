@@ -17,6 +17,7 @@ public class Plane : MonoBehaviour
     public float speed = 1f;
     public AnimationCurve landing;
     float landingTimer;
+    
 
     void Start()
     {
