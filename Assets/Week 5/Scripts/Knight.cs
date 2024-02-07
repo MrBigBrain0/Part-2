@@ -16,9 +16,10 @@ public class Knight : MonoBehaviour
     public HealthBar healthBar;
     void Start()
     {
-       rb = GetComponent<Rigidbody2D>();
-       animator = GetComponent<Animator>();
-       health = MaxHealth;
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        healthBar = GetComponent<HealthBar>();
+        health = MaxHealth;
         isDead = false;
     }
 
@@ -46,8 +47,7 @@ public class Knight : MonoBehaviour
     {
         if (isDead) return;
         clickOnSelf = true;
-        TakeDamage(1);
-        healthBar.TakeDamage(1);
+        gameObject.SendMessage("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
     }
 
     private void OnMouseUp()
