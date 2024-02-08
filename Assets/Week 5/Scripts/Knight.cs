@@ -32,6 +32,12 @@ public class Knight : MonoBehaviour
             movement = Vector2.zero;
         }
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
+
+        if (Input.GetMouseButton(1))
+        {
+            animator.SetTrigger("Attack");
+        }
+
     }
     void Update()
     {
@@ -70,4 +76,5 @@ public class Knight : MonoBehaviour
             animator.SetTrigger("TakeDMG");
         }
     }
+
 }
