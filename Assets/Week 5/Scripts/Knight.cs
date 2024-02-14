@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 public class Knight : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -11,7 +10,7 @@ public class Knight : MonoBehaviour
     Vector2 movement;
     public float speed = 3f;
     bool clickOnSelf = false;
-    public float health;
+    public float Health;
     public float MaxHealth = 5;
     bool isDead;
     public HealthBar healthBar;
@@ -20,8 +19,9 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         healthBar = GetComponent<HealthBar>();
-        health = MaxHealth;
         isDead = false;
+        Health = MaxHealth;
+        PlayerPrefs.GetFloat("health", MaxHealth);
     }
 
     private void FixedUpdate()
@@ -63,9 +63,10 @@ public class Knight : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        health = Mathf.Clamp(health,0,MaxHealth);
-        if(health <= 0)
+        PlayerPrefs.SetFloat("health", Health);
+        Health -= damage;
+        Health = Mathf.Clamp(Health,0,MaxHealth);
+        if (Health <= 0)
         {
             isDead = true;
             animator.SetTrigger("Death");
