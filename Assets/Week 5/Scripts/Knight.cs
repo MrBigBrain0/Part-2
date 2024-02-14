@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Knight : MonoBehaviour
 {
@@ -32,12 +33,6 @@ public class Knight : MonoBehaviour
             movement = Vector2.zero;
         }
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
-
-        if (Input.GetMouseButton(1))
-        {
-            animator.SetTrigger("Attack");
-        }
-
     }
     void Update()
     {
@@ -47,6 +42,11 @@ public class Knight : MonoBehaviour
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         animator.SetFloat("Movement", movement.magnitude);
+
+        if (Input.GetMouseButton(1))
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
     private void OnMouseDown()
