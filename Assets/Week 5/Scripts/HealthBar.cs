@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
 
     public void TakeDamage(float Damage)
-    {
+    { 
         slider.value -= Damage;
     }
 }
